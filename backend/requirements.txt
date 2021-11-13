@@ -5,6 +5,7 @@ Django==3.2.9
 django-cors-headers==3.10.0
 djangorestframework==3.12.4
 djangorestframework-camel-case==1.2.0
+drf-nested-routers==0.93.4
 flake8==4.0.1
 isort==5.10.1
 mccabe==0.6.1

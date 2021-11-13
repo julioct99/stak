@@ -1,13 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets
 
-from .models import (
-    Transaction,
-    TransactionCategory,
-    TransactionSubcategory,
-    User,
-    Wallet,
-)
+from .models import Transaction, TransactionCategory, TransactionSubcategory, Wallet
 from .serializers import (
     TransactionCategorySerializer,
     TransactionSerializer,
@@ -27,7 +21,7 @@ class TransactionCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionCategorySerializer
 
 
-class TransactionSubcategorySerializer(viewsets.ModelViewSet):
+class TransactionSubcategoryViewSet(viewsets.ModelViewSet):
     queryset = TransactionSubcategory.objects.all()
     serializer_class = TransactionSubcategorySerializer
 
