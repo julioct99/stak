@@ -12,9 +12,11 @@ from .views import (
 )
 
 router = routers.SimpleRouter()
-router.register(r"users", UserViewSet)
-router.register(r"wallets", WalletViewSet)
-router.register(r"categories", TransactionCategoryViewSet)
+router.register(r"users", UserViewSet, basename="users")
+router.register(r"wallets", WalletViewSet, basename="wallets")
+router.register(
+    r"categories", TransactionCategoryViewSet, basename="categories"
+)
 
 # Wallets
 wallets_router = routers.NestedSimpleRouter(
