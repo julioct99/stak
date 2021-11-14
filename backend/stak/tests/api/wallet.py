@@ -19,7 +19,7 @@ class WalletAPITests(APITestCase):
             "balance": 500,
         },
     ]
-    wallet_attributes = wallets[0].keys()
+    wallet_fields = wallets[0].keys()
 
     def setUp(self):
         owner = User.objects.create(
@@ -43,7 +43,7 @@ class WalletAPITests(APITestCase):
             self.assertEqual(True, serializer.is_valid())
             instance = serializer.validated_data
 
-            for attribute in self.wallet_attributes:
+            for attribute in self.wallet_fields:
                 self.assertEqual(
                     instance[attribute], self.wallets[index][attribute]
                 )
@@ -81,7 +81,7 @@ class WalletAPITests(APITestCase):
         self.assertEqual(True, serializer.is_valid())
         instance = serializer.validated_data
 
-        for attribute in self.wallet_attributes:
+        for attribute in self.wallet_fields:
             self.assertEqual(instance[attribute], self.wallets[0][attribute])
 
     def test_get_wallet__404_not_found(self):

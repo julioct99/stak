@@ -23,7 +23,7 @@ wallets_router = routers.NestedSimpleRouter(
     router, r"wallets", lookup="wallet"
 )
 wallets_router.register(
-    r"transactions", TransactionViewSet, basename="wallet-transactions"
+    r"transactions", TransactionViewSet, basename="transactions"
 )
 
 # Categories

@@ -1,1 +1,1 @@
-from .api import UserAPITests, WalletAPITests
+from .api import TransactionAPITests, UserAPITests, WalletAPITests
