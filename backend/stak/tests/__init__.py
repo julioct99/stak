@@ -1,1 +1,6 @@
-from .api import TransactionAPITests, UserAPITests, WalletAPITests
+from .api import (
+    TransactionAPITests,
+    TransactionCategoryAPITests,
+    UserAPITests,
+    WalletAPITests,
+)
