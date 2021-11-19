@@ -11,3 +11,6 @@ class Transaction(models.Model):
     amount = models.DecimalField(decimal_places=2, max_digits=16)
     creation_date = models.DateTimeField(auto_now_add=True)
     date = models.DateField()
+
+    def __str__(self) -> str:
+        return f"{self.wallet.title} ({self.date}): {self.amount}"
