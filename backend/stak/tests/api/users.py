@@ -14,7 +14,6 @@ class UserAPITests(APITestCase):
         },
         {"username": "user_two", "email": "user_two@gmail.com"},
     ]
-
     user_fields = users[0].keys()
 
     def setUp(self):

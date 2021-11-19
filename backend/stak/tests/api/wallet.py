@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
@@ -43,10 +45,9 @@ class WalletAPITests(APITestCase):
             self.assertEqual(True, serializer.is_valid())
             instance = serializer.validated_data
 
-            for attribute in self.wallet_fields:
-                self.assertEqual(
-                    instance[attribute], self.wallets[index][attribute]
-                )
+            self.check_wallet_fields(
+                api_wallet=instance, local_wallet=self.wallets[index]
+            )
 
     def test_create_wallet(self):
         url = reverse(f"{BASENAME}-list")
@@ -80,9 +81,9 @@ class WalletAPITests(APITestCase):
         serializer = WalletSerializer(data=response.data)
         self.assertEqual(True, serializer.is_valid())
         instance = serializer.validated_data
-
-        for attribute in self.wallet_fields:
-            self.assertEqual(instance[attribute], self.wallets[0][attribute])
+        self.check_wallet_fields(
+            api_wallet=instance, local_wallet=self.wallets[0]
+        )
 
     def test_get_wallet__404_not_found(self):
         url = reverse(f"{BASENAME}-detail", args=(999,))
@@ -112,3 +113,21 @@ class WalletAPITests(APITestCase):
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    # Helper methods
+
+    def check_wallet_fields(self, api_wallet: object, local_wallet: object):
+        """Checks all the field values of a wallet from the API against the local test data
+
+        Args:
+            api_wallet (object): Wallet object returned in the API response data
+            local_wallet (object): Wallet object in the local test data
+        """
+        for field in self.wallet_fields:
+            if field == "balance":
+                self.assertEqual(
+                    Decimal(api_wallet[field]), Decimal(local_wallet[field])
+                )
+                continue
+
+            self.assertEqual(api_wallet[field], local_wallet[field])
