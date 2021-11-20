@@ -14,7 +14,8 @@ import ListItemText from '@mui/material/ListItemText';
 import AppBar from '../AppBar/AppBar';
 
 import { DRAWER_WIDTH } from '../../../shared/settings/layout';
-import { MAIN_MENU_ITEMS, SECONDARY_MENU_ITEMS } from './menuItems';
+import { MAIN_MENU_ITEMS } from './menuItems';
+import { Link } from 'react-router-dom';
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -92,18 +93,13 @@ const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ children }) => {
         <Divider />
         <List>
           {MAIN_MENU_ITEMS.map((item, index) => (
-            <ListItem title={open ? '' : item.name} button key={item.name}>
-              <ListItemIcon>
-                <item.icon />
-              </ListItemIcon>
-              <ListItemText primary={item.name} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {SECONDARY_MENU_ITEMS.map((item, index) => (
-            <ListItem title={open ? '' : item.name} button key={item.name}>
+            <ListItem
+              component={Link}
+              to={item.link}
+              title={open ? '' : item.name}
+              button
+              key={item.name}
+            >
               <ListItemIcon>
                 <item.icon />
               </ListItemIcon>
