@@ -1,21 +1,14 @@
 import * as React from 'react';
-import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
+import { styled, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import AppBar from '../AppBar/AppBar';
 
 import { DRAWER_WIDTH } from '../../../shared/settings/layout';
 import { MAIN_MENU_ITEMS } from './menuItems';
-import { Link } from 'react-router-dom';
+import DrawerItems from './DrawerItems';
+import DrawerHeader from './DrawerHeader';
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -38,15 +31,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: DRAWER_WIDTH,
@@ -65,11 +49,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 interface DrawerProps {
-  children: JSX.Element;
+  pageContent: JSX.Element;
 }
 
-const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ children }) => {
-  const theme = useTheme();
+const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ pageContent }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -85,31 +68,11 @@ const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ children }) => {
       <CssBaseline />
       <AppBar open={open} onDrawerOpen={handleDrawerOpen} />
       <Drawer variant='permanent' open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {MAIN_MENU_ITEMS.map((item, index) => (
-            <ListItem
-              component={Link}
-              to={item.link}
-              title={open ? '' : item.name}
-              button
-              key={item.name}
-            >
-              <ListItemIcon>
-                <item.icon />
-              </ListItemIcon>
-              <ListItemText primary={item.name} />
-            </ListItem>
-          ))}
-        </List>
+        <DrawerHeader onDrawerClose={handleDrawerClose} />
+        <DrawerItems drawerOpen={open} items={MAIN_MENU_ITEMS} />
       </Drawer>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }} marginTop={4}>
-        {children}
+        {pageContent}
       </Box>
     </Box>
   );

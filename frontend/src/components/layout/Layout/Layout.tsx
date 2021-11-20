@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 
 const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
-  return <MiniDrawer>{children}</MiniDrawer>;
+  return <MiniDrawer pageContent={children} />;
 };
 
 export default Layout;
