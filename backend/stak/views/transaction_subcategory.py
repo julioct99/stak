@@ -6,5 +6,9 @@ from stak.serializers.transaction_subcategory import (
 
 
 class TransactionSubcategoryViewSet(viewsets.ModelViewSet):
-    queryset = TransactionSubcategory.objects.all()
     serializer_class = TransactionSubcategorySerializer
+
+    def get_queryset(self):
+        return TransactionSubcategory.objects.filter(
+            category_id=self.kwargs["category_pk"]
+        )

@@ -4,5 +4,7 @@ from stak.serializers.transaction import TransactionSerializer
 
 
 class TransactionViewSet(viewsets.ModelViewSet):
-    queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+
+    def get_queryset(self):
+        return Transaction.objects.filter(wallet_id=self.kwargs["wallet_pk"])
