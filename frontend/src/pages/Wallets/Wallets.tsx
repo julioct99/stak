@@ -1,23 +1,16 @@
-import { useEffect, useState } from 'react';
-import { getWalletListUrl } from '../../shared/api/urls';
-import { Wallet } from '../../shared/types/wallet';
+import { useWallets } from '../../shared/api/queries';
 
 interface WalletsPageProps {}
 
 const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
-  const [wallets, setWallets] = useState<Wallet[]>([]);
-
-  useEffect(() => {
-    fetch(getWalletListUrl())
-      .then((data) => data.json())
-      .then(setWallets);
-  }, []);
+  const wallets = useWallets();
 
   return (
     <>
       <h1>Wallets</h1>
+      {wallets.isLoading ? <p>Loading...</p> : null}
       <ul>
-        {wallets.map((wallet) => (
+        {wallets.data?.map((wallet) => (
           <li key={wallet.id}>
             <pre>{JSON.stringify(wallet, null, 2)}</pre>
           </li>

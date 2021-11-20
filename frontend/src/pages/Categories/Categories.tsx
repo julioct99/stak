@@ -1,29 +1,17 @@
-import { useEffect, useState } from 'react';
-import { getCategoryListUrl, getSubcategoryListUrl } from '../../shared/api/urls';
-import { TransactionCategory } from '../../shared/types/transactionCategory';
-import { TransactionSubcategory } from '../../shared/types/transactionSubcategory';
+import { useCategories, useSubcategories } from '../../shared/api/queries';
 
 interface CategoriesPageProps {}
 
 const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
-  const [categories, setCategories] = useState<TransactionCategory[]>([]);
-  const [subcategories, setSubcategories] = useState<TransactionSubcategory[]>([]);
-
-  useEffect(() => {
-    fetch(getCategoryListUrl())
-      .then((data) => data.json())
-      .then(setCategories);
-
-    fetch(getSubcategoryListUrl(1))
-      .then((data) => data.json())
-      .then(setSubcategories);
-  }, []);
+  const categories = useCategories();
+  const subcategories = useSubcategories(1);
 
   return (
     <>
       <h1>Categories</h1>
+      {categories.isLoading ? <p>Loading...</p> : null}
       <ul>
-        {categories.map((category) => (
+        {categories.data?.map((category) => (
           <li key={category.id}>
             <pre>{JSON.stringify(category, null, 2)}</pre>
           </li>
@@ -31,8 +19,9 @@ const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
       </ul>
 
       <h1>Subcategories</h1>
+      {subcategories.isLoading ? <p>Loading...</p> : null}
       <ul>
-        {subcategories.map((subcategory) => (
+        {subcategories.data?.map((subcategory) => (
           <li key={subcategory.id}>
             <pre>{JSON.stringify(subcategory, null, 2)}</pre>
           </li>
