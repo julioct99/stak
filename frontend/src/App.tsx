@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Layout from './components/layout/Layout/Layout';
 import { TransactionCategory } from './shared/types/transactionCategory';
 import { TransactionSubcategory } from './shared/types/transactionSubcategory';
 import { Wallet } from './shared/types/wallet';
@@ -17,40 +18,48 @@ function App() {
   useEffect(() => {
     fetch(walletsUrl)
       .then((data) => data.json())
-      .then((data) => setWallets(data));
+      .then(setWallets);
 
     fetch(categoriesUrl)
       .then((data) => data.json())
-      .then((data) => setCategories(data));
+      .then(setCategories);
 
     fetch(subcategoriesUrl)
       .then((data) => data.json())
-      .then((data) => setSubcategories(data));
+      .then(setSubcategories);
   }, []);
 
   return (
-    <div>
-      <h1>Wallets</h1>
-      <ul>
-        {wallets.map((wallet) => (
-          <li key={wallet.id}>{JSON.stringify(wallet)}</li>
-        ))}
-      </ul>
+    <Layout>
+      <>
+        <h1>Wallets</h1>
+        <ul>
+          {wallets.map((wallet) => (
+            <li key={wallet.id}>
+              <pre>{JSON.stringify(wallet, null, 2)}</pre>
+            </li>
+          ))}
+        </ul>
 
-      <h1>Categories</h1>
-      <ul>
-        {categories.map((category) => (
-          <li key={category.id}>{JSON.stringify(category)}</li>
-        ))}
-      </ul>
+        <h1>Categories</h1>
+        <ul>
+          {categories.map((category) => (
+            <li key={category.id}>
+              <pre>{JSON.stringify(category, null, 2)}</pre>
+            </li>
+          ))}
+        </ul>
 
-      <h1>Subcategories</h1>
-      <ul>
-        {subcategories.map((subcategory) => (
-          <li key={subcategory.id}>{JSON.stringify(subcategory)}</li>
-        ))}
-      </ul>
-    </div>
+        <h1>Subcategories</h1>
+        <ul>
+          {subcategories.map((subcategory) => (
+            <li key={subcategory.id}>
+              <pre>{JSON.stringify(subcategory, null, 2)}</pre>
+            </li>
+          ))}
+        </ul>
+      </>
+    </Layout>
   );
 }
 
