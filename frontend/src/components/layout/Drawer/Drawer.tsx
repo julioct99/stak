@@ -11,11 +11,10 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import AppBar from '../AppBar/AppBar';
 
 import { DRAWER_WIDTH } from '../../../shared/settings/layout';
+import { MAIN_MENU_ITEMS, SECONDARY_MENU_ITEMS } from './menuItems';
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -92,23 +91,23 @@ const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ children }) => {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem title={open ? '' : text} button key={text}>
+          {MAIN_MENU_ITEMS.map((item, index) => (
+            <ListItem title={open ? '' : item.name} button key={item.name}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <item.icon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.name} />
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem title={open ? '' : text} button key={text}>
+          {SECONDARY_MENU_ITEMS.map((item, index) => (
+            <ListItem title={open ? '' : item.name} button key={item.name}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <item.icon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.name} />
             </ListItem>
           ))}
         </List>
