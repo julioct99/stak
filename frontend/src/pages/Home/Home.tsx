@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
+import {
+  getCategoryListUrl,
+  getSubcategoryListUrl,
+  getWalletListUrl,
+} from '../../shared/api/urls';
 import { TransactionCategory } from '../../shared/types/transactionCategory';
 import { TransactionSubcategory } from '../../shared/types/transactionSubcategory';
 import { Wallet } from '../../shared/types/wallet';
-
-const baseUrl = 'http://localhost:8000/api';
-
-const walletsUrl = `${baseUrl}/wallets`;
-const categoriesUrl = `${baseUrl}/categories`;
-const subcategoriesUrl = `${categoriesUrl}/1/subcategories`;
 
 interface HomeProps {}
 
@@ -17,15 +16,15 @@ const Home: React.FunctionComponent<HomeProps> = () => {
   const [subcategories, setSubcategories] = useState<TransactionSubcategory[]>([]);
 
   useEffect(() => {
-    fetch(walletsUrl)
+    fetch(getWalletListUrl())
       .then((data) => data.json())
       .then(setWallets);
 
-    fetch(categoriesUrl)
+    fetch(getCategoryListUrl())
       .then((data) => data.json())
       .then(setCategories);
 
-    fetch(subcategoriesUrl)
+    fetch(getSubcategoryListUrl(1))
       .then((data) => data.json())
       .then(setSubcategories);
   }, []);
