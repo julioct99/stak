@@ -1,13 +1,21 @@
 import { Grid, Typography } from '@mui/material';
+import { useState } from 'react';
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent';
 import { useWallets } from '../../shared/api/queries';
-import WalletDetail from './WalletDetail';
+import { Wallet } from '../../shared/types/wallet';
+import WalletDetail from './WalletDetail/WalletDetail';
 import WalletList from './WalletList';
 
 interface WalletsPageProps {}
 
 const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
+  const [selectedWallet, setSelectedWallet] = useState<Wallet | undefined>();
+
   const wallets = useWallets();
+
+  const handleWalletSelect = (wallet: Wallet) => {
+    setSelectedWallet(wallet);
+  };
 
   return (
     <>
@@ -16,12 +24,12 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
       <Grid container spacing={2} marginTop={3}>
         <Grid item xs={3}>
           <GridItemContent>
-            <WalletList wallets={wallets.data} />
+            <WalletList wallets={wallets.data} onSelectWallet={handleWalletSelect} />
           </GridItemContent>
         </Grid>
         <Grid item xs={9}>
           <GridItemContent>
-            <WalletDetail wallet={wallets.data?.[0]} />
+            <WalletDetail wallet={selectedWallet} />
           </GridItemContent>
         </Grid>
       </Grid>

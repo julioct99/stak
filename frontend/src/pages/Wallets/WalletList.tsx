@@ -6,17 +6,22 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
+
 import { Wallet } from '../../shared/types/wallet';
 
 interface WalletListProps {
   wallets: Wallet[] | undefined;
+  onSelectWallet: (wallet: Wallet) => void;
 }
 
-const WalletList: React.FunctionComponent<WalletListProps> = ({ wallets }) => {
+const WalletList: React.FunctionComponent<WalletListProps> = ({
+  wallets,
+  onSelectWallet,
+}) => {
   return (
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
       {wallets?.map((wallet) => (
-        <ListItemButton>
+        <ListItemButton onClick={() => onSelectWallet(wallet)}>
           <ListItemAvatar>
             <Avatar>
               <AccountBalanceWallet />
