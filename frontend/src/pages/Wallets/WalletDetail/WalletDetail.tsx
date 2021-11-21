@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import { useTransactions } from '../../../shared/api/queries';
 import { Wallet } from '../../../shared/types/wallet';
 import TransactionList from './TransactionList';
@@ -17,6 +17,7 @@ const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({ wallet }) =>
         {wallet.title}
       </Typography>
       <WalletBalance balance={wallet.balance} />
+      <Divider />
       <TransactionList transactions={transactions.data || []} />
     </Box>
   );
