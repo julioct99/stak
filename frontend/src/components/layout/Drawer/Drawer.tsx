@@ -71,7 +71,7 @@ const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ pageContent }) => {
         <DrawerHeader onDrawerClose={handleDrawerClose} />
         <DrawerItems drawerOpen={open} items={MAIN_MENU_ITEMS} />
       </Drawer>
-      <Box component='main' sx={{ flexGrow: 1, p: 3 }} marginTop={6}>
+      <Box component='main' sx={{ flexGrow: 1, p: 3 }} marginTop={10}>
         {pageContent}
       </Box>
     </Box>
