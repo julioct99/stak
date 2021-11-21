@@ -7,4 +7,5 @@ export const BASE_NAMES = {
   WALLETS: 'wallets',
   CATEGORIES: 'categories',
   SUBCATEGORIES: 'subcategories',
+  TRANSACTIONS: 'transactions',
 };

@@ -1,19 +1,24 @@
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { useTransactions } from '../../../shared/api/queries';
 import { Wallet } from '../../../shared/types/wallet';
+import TransactionList from './TransactionList';
 import WalletBalance from './WalletBalance';
 
 interface WalletDetailProps {
-  wallet: Wallet | undefined;
+  wallet: Wallet;
 }
 
 const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({ wallet }) => {
-  if (!wallet) return <p>Select a Wallet</p>;
+  const transactions = useTransactions(wallet?.id);
 
   return (
-    <>
-      <Typography variant='h3'>{wallet.title}</Typography>
+    <Box padding={2}>
+      <Typography variant='h3' marginBottom={2}>
+        {wallet.title}
+      </Typography>
       <WalletBalance balance={wallet.balance} />
-    </>
+      <TransactionList transactions={transactions.data || []} />
+    </Box>
   );
 };
 

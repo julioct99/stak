@@ -27,11 +27,13 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
             <WalletList wallets={wallets.data} onSelectWallet={handleWalletSelect} />
           </GridItemContent>
         </Grid>
-        <Grid item xs={9}>
-          <GridItemContent>
-            <WalletDetail wallet={selectedWallet} />
-          </GridItemContent>
-        </Grid>
+        {selectedWallet && (
+          <Grid item xs={9}>
+            <GridItemContent>
+              <WalletDetail wallet={selectedWallet} />
+            </GridItemContent>
+          </Grid>
+        )}
       </Grid>
     </>
   );

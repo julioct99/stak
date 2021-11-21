@@ -5,7 +5,7 @@ export const getWalletListUrl = () => {
 };
 
 export const getWalletDetailUrl = (walletId: number) => {
-  return `${BASE_URL}/${BASE_NAMES.WALLETS}/${walletId}`;
+  return `${getWalletListUrl()}/${walletId}`;
 };
 
 export const getCategoryListUrl = () => {
@@ -13,7 +13,7 @@ export const getCategoryListUrl = () => {
 };
 
 export const getCategoryDetailUrl = (categoryId: number) => {
-  return `${BASE_URL}/${BASE_NAMES.CATEGORIES}/${categoryId}`;
+  return `${getCategoryListUrl()}/${categoryId}`;
 };
 
 export const getSubcategoryListUrl = (categoryId: number) => {
@@ -22,6 +22,14 @@ export const getSubcategoryListUrl = (categoryId: number) => {
 };
 
 export const getSubcategoryDetailUrl = (categoryId: number, subcategoryId: number) => {
-  const parentCategoryUrl = getCategoryDetailUrl(categoryId);
-  return `${parentCategoryUrl}/${BASE_NAMES.SUBCATEGORIES}/${subcategoryId}`;
+  return `${getSubcategoryListUrl(categoryId)}/${subcategoryId}`;
+};
+
+export const getTransactionListUrl = (walletId: number) => {
+  const parentWalletUrl = getWalletDetailUrl(walletId);
+  return `${parentWalletUrl}/${BASE_NAMES.TRANSACTIONS}`;
+};
+
+export const getTransactionDetailUrl = (walletId: number, transactionId: number) => {
+  return `${getTransactionListUrl(walletId)}/${transactionId}`;
 };
