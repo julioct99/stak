@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/layout/Layout/Layout';
-import CategoriesPage from './pages/Categories/Categories';
+import CategoriesPage from './pages/Categories/CategoriesPage';
 import HomePage from './pages/Home/HomePage';
 import WalletsPage from './pages/Wallets/WalletsPage';
 

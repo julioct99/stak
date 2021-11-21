@@ -9,6 +9,7 @@ import { DRAWER_WIDTH } from '../../../shared/settings/layout';
 import { MAIN_MENU_ITEMS } from './menuItems';
 import DrawerItems from './DrawerItems';
 import DrawerHeader from './DrawerHeader';
+import { Container } from '@mui/material';
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -64,7 +65,11 @@ const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ pageContent }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box
+      sx={{ display: 'flex' }}
+      style={{ backgroundColor: '#E4E4E4', minHeight: '100vh', height: 'fit-content' }}
+      marginBottom={6}
+    >
       <CssBaseline />
       <AppBar open={open} onDrawerOpen={handleDrawerOpen} />
       <Drawer variant='permanent' open={open}>
@@ -72,7 +77,7 @@ const MiniDrawer: React.FunctionComponent<DrawerProps> = ({ pageContent }) => {
         <DrawerItems drawerOpen={open} items={MAIN_MENU_ITEMS} />
       </Drawer>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }} marginTop={10}>
-        {pageContent}
+        <Container>{pageContent}</Container>
       </Box>
     </Box>
   );

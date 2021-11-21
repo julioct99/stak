@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import { useCategories, useSubcategories } from '../../shared/api/queries';
 
 interface CategoriesPageProps {}
@@ -8,7 +9,7 @@ const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
 
   return (
     <>
-      <h1>Categories</h1>
+      <Typography variant='h2'>Categories</Typography>
       {categories.isLoading ? <p>Loading...</p> : null}
       <ul>
         {categories.data?.map((category) => (
