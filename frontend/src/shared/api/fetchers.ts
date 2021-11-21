@@ -3,12 +3,18 @@ import {
   getCategoryListUrl,
   getSubcategoryListUrl,
   getTransactionListUrl,
+  getWalletDetailUrl,
   getWalletListUrl,
 } from './urls';
 
 export const fetchWallets = async () => {
   const wallets = await axios.get(getWalletListUrl());
   return wallets.data;
+};
+
+export const fetchWalletDetail = async (walletId: number) => {
+  const wallet = await axios.get(getWalletDetailUrl(walletId));
+  return wallet.data;
 };
 
 export const fetchCategories = async () => {

@@ -7,12 +7,19 @@ import {
   fetchCategories,
   fetchSubcategories,
   fetchTransactions,
+  fetchWalletDetail,
   fetchWallets,
 } from './fetchers';
 import { BASE_NAMES } from './settings';
 
 export function useWallets() {
   return useQuery<Wallet[], Error>(BASE_NAMES.WALLETS, fetchWallets);
+}
+
+export function useWallet(walletId: number) {
+  return useQuery<Wallet, Error>([BASE_NAMES.WALLETS, walletId], () =>
+    fetchWalletDetail(walletId)
+  );
 }
 
 export function useCategories() {

@@ -1,5 +1,5 @@
 import { Box, Divider, Typography } from '@mui/material';
-import { useTransactions } from '../../../shared/api/queries';
+import { useTransactions, useWallet } from '../../../shared/api/queries';
 import { Wallet } from '../../../shared/types/wallet';
 import TransactionList from './TransactionList';
 import WalletBalance from './WalletBalance';
@@ -9,14 +9,15 @@ interface WalletDetailProps {
 }
 
 const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({ wallet }) => {
-  const transactions = useTransactions(wallet?.id);
+  const internalWallet = useWallet(wallet.id);
+  const transactions = useTransactions(internalWallet.data?.id);
 
   return (
     <Box padding={2}>
       <Typography variant='h3' marginBottom={2}>
-        {wallet.title}
+        {internalWallet.data?.title}
       </Typography>
-      <WalletBalance balance={wallet.balance} />
+      <WalletBalance balance={internalWallet.data?.balance} />
       <Divider />
       <TransactionList transactions={transactions.data || []} />
     </Box>
