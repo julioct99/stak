@@ -1,25 +1,24 @@
-import { Grid, Typography } from '@mui/material';
-import { useState } from 'react';
-import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent';
-import { useWallets } from '../../shared/api/queries';
-import { Wallet } from '../../shared/types/wallet';
-import WalletDetail from './WalletDetail/WalletDetail';
-import WalletList from './WalletList';
+import { Grid } from '@mui/material'
+import { useState } from 'react'
+import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
+import { useWallets } from '../../shared/api/queries'
+import { Wallet } from '../../shared/types/wallet'
+import WalletDetail from './WalletDetail/WalletDetail'
+import WalletList from './WalletList'
 
 interface WalletsPageProps {}
 
 const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
-  const [selectedWallet, setSelectedWallet] = useState<Wallet | undefined>();
+  const [selectedWallet, setSelectedWallet] = useState<Wallet | undefined>()
 
-  const wallets = useWallets();
+  const wallets = useWallets()
 
   const handleWalletSelect = (wallet: Wallet) => {
-    setSelectedWallet(wallet);
-  };
+    setSelectedWallet(wallet)
+  }
 
   return (
     <>
-      <Typography variant='h2'>Wallets</Typography>
       {wallets.isLoading ? <p>Loading...</p> : null}
       <Grid container spacing={2} marginTop={3}>
         <Grid item xs={3}>
@@ -36,7 +35,7 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
         )}
       </Grid>
     </>
-  );
-};
+  )
+}
 
-export default WalletsPage;
+export default WalletsPage

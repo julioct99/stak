@@ -1,35 +1,46 @@
-import { Typography } from '@mui/material';
-import { useCategories, useSubcategories } from '../../shared/api/queries';
+import { Grid } from '@mui/material'
+import { useState } from 'react'
+import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
+import { useCategories } from '../../shared/api/queries'
+import { TransactionCategory } from '../../shared/types/transactionCategory'
+import CategoryDetail from './CategoryDetail'
+import CategoryList from './CategoryList'
 
 interface CategoriesPageProps {}
 
 const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
-  const categories = useCategories();
-  const subcategories = useSubcategories(1);
+  const [selectedCategory, setSelectedCategory] = useState<
+    TransactionCategory | undefined
+  >()
+
+  const categories = useCategories()
+
+  const handleCategorySelect = (category: TransactionCategory) => {
+    setSelectedCategory(category)
+  }
 
   return (
     <>
-      <Typography variant='h2'>Categories</Typography>
       {categories.isLoading ? <p>Loading...</p> : null}
-      <ul>
-        {categories.data?.map((category) => (
-          <li key={category.id}>
-            <pre>{JSON.stringify(category, null, 2)}</pre>
-          </li>
-        ))}
-      </ul>
-
-      <h1>Subcategories</h1>
-      {subcategories.isLoading ? <p>Loading...</p> : null}
-      <ul>
-        {subcategories.data?.map((subcategory) => (
-          <li key={subcategory.id}>
-            <pre>{JSON.stringify(subcategory, null, 2)}</pre>
-          </li>
-        ))}
-      </ul>
+      <Grid container spacing={2} marginTop={3}>
+        <Grid item xs={3}>
+          <GridItemContent>
+            <CategoryList
+              categories={categories.data}
+              onSelectCategory={handleCategorySelect}
+            />
+          </GridItemContent>
+        </Grid>
+        {selectedCategory && (
+          <Grid item xs={9}>
+            <GridItemContent>
+              <CategoryDetail category={selectedCategory} />
+            </GridItemContent>
+          </Grid>
+        )}
+      </Grid>
     </>
-  );
-};
+  )
+}
 
-export default CategoriesPage;
+export default CategoriesPage
