@@ -1,6 +1,6 @@
 import { Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import { useCategory, useTransactions } from '../../shared/api/queries'
+import { useCategory, useCategoryTransactions } from '../../shared/api/queries'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
 import TransactionList from '../Wallets/WalletDetail/TransactionList'
 
@@ -10,7 +10,7 @@ interface CategoryDetailProps {
 
 const CategoryDetail: React.FunctionComponent<CategoryDetailProps> = ({ category }) => {
   const internalCategory = useCategory(category.id)
-  const transactions = useTransactions(1)
+  const transactions = useCategoryTransactions(category.id)
 
   return (
     <Box padding={2}>

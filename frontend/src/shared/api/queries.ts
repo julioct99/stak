@@ -37,7 +37,7 @@ export function useCategory(categoryId: number) {
 }
 
 export function useCategoryTransactions(categoryId: number) {
-  return useQuery<Transaction | Error>(
+  return useQuery<Transaction[], Error>(
     [BASE_NAMES.CATEGORIES, categoryId, BASE_NAMES.TRANSACTIONS],
     () => fetchCategoryTransactions(categoryId)
   )
@@ -51,20 +51,20 @@ export function useSubcategories(categoryId: number) {
 }
 
 export function useSubcategory(categoryId: number, subcategoryId: number) {
-  return useQuery<TransactionSubcategory | Error>(
+  return useQuery<TransactionSubcategory, Error>(
     [BASE_NAMES.SUBCATEGORIES, categoryId, subcategoryId],
     () => fetchSubcategoryDetail(categoryId, subcategoryId)
   )
 }
 
 export function useSubcategoryTransactions(categoryId: number, subcategoryId: number) {
-  return useQuery<Transaction | Error>(
+  return useQuery<Transaction[], Error>(
     [BASE_NAMES.SUBCATEGORIES, categoryId, subcategoryId, BASE_NAMES.TRANSACTIONS],
     () => fetchSubcategoryTransactions(categoryId, subcategoryId)
   )
 }
 
-export function useTransactions(walletId: number | undefined) {
+export function useTransactions(walletId: number) {
   return useQuery<Transaction[], Error>([BASE_NAMES.TRANSACTIONS, walletId], () =>
     fetchTransactions(walletId)
   )

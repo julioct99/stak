@@ -59,7 +59,7 @@ export const fetchSubcategoryTransactions = async (
   return transactions.data
 }
 
-export const fetchTransactions = async (walletId: number | undefined) => {
+export const fetchTransactions = async (walletId: number) => {
   if (!walletId) return []
 
   const transactions = await axios.get(getTransactionListUrl(walletId))
