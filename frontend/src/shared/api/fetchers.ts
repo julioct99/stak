@@ -2,7 +2,10 @@ import axios from 'axios'
 import {
   getCategoryDetailUrl,
   getCategoryListUrl,
+  getCategoryTransactionListUrl,
+  getSubcategoryDetailUrl,
   getSubcategoryListUrl,
+  getSubcategoryTransactionListUrl,
   getTransactionListUrl,
   getWalletDetailUrl,
   getWalletListUrl,
@@ -28,9 +31,32 @@ export const fetchCategoryDetail = async (categoryId: number) => {
   return category.data
 }
 
+export const fetchCategoryTransactions = async (categoryId: number) => {
+  const transactions = await axios.get(getCategoryTransactionListUrl(categoryId))
+  return transactions.data
+}
+
 export const fetchSubcategories = async (categoryId: number) => {
   const subcategories = await axios.get(getSubcategoryListUrl(categoryId))
   return subcategories.data
+}
+
+export const fetchSubcategoryDetail = async (
+  categoryId: number,
+  subcategoryId: number
+) => {
+  const subcategory = await axios.get(getSubcategoryDetailUrl(categoryId, subcategoryId))
+  return subcategory.data
+}
+
+export const fetchSubcategoryTransactions = async (
+  categoryId: number,
+  subcategoryId: number
+) => {
+  const transactions = await axios.get(
+    getSubcategoryTransactionListUrl(categoryId, subcategoryId)
+  )
+  return transactions.data
 }
 
 export const fetchTransactions = async (walletId: number | undefined) => {

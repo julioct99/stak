@@ -6,7 +6,10 @@ import { Wallet } from '../types/wallet'
 import {
   fetchCategories,
   fetchCategoryDetail,
+  fetchCategoryTransactions,
   fetchSubcategories,
+  fetchSubcategoryDetail,
+  fetchSubcategoryTransactions,
   fetchTransactions,
   fetchWalletDetail,
   fetchWallets,
@@ -33,10 +36,31 @@ export function useCategory(categoryId: number) {
   )
 }
 
+export function useCategoryTransactions(categoryId: number) {
+  return useQuery<Transaction | Error>(
+    [BASE_NAMES.CATEGORIES, categoryId, BASE_NAMES.TRANSACTIONS],
+    () => fetchCategoryTransactions(categoryId)
+  )
+}
+
 export function useSubcategories(categoryId: number) {
   return useQuery<TransactionSubcategory[], Error>(
     [BASE_NAMES.SUBCATEGORIES, categoryId],
     () => fetchSubcategories(categoryId)
+  )
+}
+
+export function useSubcategory(categoryId: number, subcategoryId: number) {
+  return useQuery<TransactionSubcategory | Error>(
+    [BASE_NAMES.SUBCATEGORIES, categoryId, subcategoryId],
+    () => fetchSubcategoryDetail(categoryId, subcategoryId)
+  )
+}
+
+export function useSubcategoryTransactions(categoryId: number, subcategoryId: number) {
+  return useQuery<Transaction | Error>(
+    [BASE_NAMES.SUBCATEGORIES, categoryId, subcategoryId, BASE_NAMES.TRANSACTIONS],
+    () => fetchSubcategoryTransactions(categoryId, subcategoryId)
   )
 }
 
