@@ -32,9 +32,21 @@ categories_router = routers.NestedSimpleRouter(
 categories_router.register(
     r"subcategories", TransactionSubcategoryViewSet, basename="subcategories"
 )
+categories_router.register(
+    r"transactions", TransactionViewSet, basename="transactions"
+)
+
+# Subcategories
+subcategories_router = routers.NestedSimpleRouter(
+    categories_router, r"subcategories", lookup="subcategory"
+)
+subcategories_router.register(
+    r"transactions", TransactionViewSet, basename="transactions"
+)
 
 urlpatterns = [
     path(r"", include(router.urls)),
     path(r"", include(wallets_router.urls)),
     path(r"", include(categories_router.urls)),
+    path(r"", include(subcategories_router.urls)),
 ]
