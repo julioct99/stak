@@ -1,5 +1,6 @@
 import { Folder } from '@mui/icons-material'
 import { List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
+import { useState } from 'react'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
 
 interface CategoryListProps {
@@ -11,10 +12,22 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
   categories,
   onSelectCategory,
 }) => {
+  const [selectedCategory, setSelectedCategory] = useState<
+    TransactionCategory | undefined
+  >()
+
+  const handleCategorySelect = (category: TransactionCategory) => {
+    setSelectedCategory(category)
+    onSelectCategory(category)
+  }
+
   return (
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
       {categories?.map((category) => (
-        <ListItemButton onClick={() => onSelectCategory(category)}>
+        <ListItemButton
+          selected={category.id === selectedCategory?.id}
+          onClick={() => handleCategorySelect(category)}
+        >
           <ListItemAvatar>
             <Folder />
           </ListItemAvatar>

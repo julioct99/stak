@@ -1,27 +1,32 @@
-import { AccountBalanceWallet } from '@mui/icons-material';
-import {
-  Avatar,
-  List,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-} from '@mui/material';
+import { AccountBalanceWallet } from '@mui/icons-material'
+import { Avatar, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
+import { useState } from 'react'
 
-import { Wallet } from '../../shared/types/wallet';
+import { Wallet } from '../../shared/types/wallet'
 
 interface WalletListProps {
-  wallets: Wallet[] | undefined;
-  onSelectWallet: (wallet: Wallet) => void;
+  wallets: Wallet[] | undefined
+  onSelectWallet: (wallet: Wallet) => void
 }
 
 const WalletList: React.FunctionComponent<WalletListProps> = ({
   wallets,
   onSelectWallet,
 }) => {
+  const [selectedWallet, setSelectedWallet] = useState<Wallet | undefined>()
+
+  const handleWalletSelect = (wallet: Wallet) => {
+    setSelectedWallet(wallet)
+    onSelectWallet(wallet)
+  }
+
   return (
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
       {wallets?.map((wallet) => (
-        <ListItemButton onClick={() => onSelectWallet(wallet)}>
+        <ListItemButton
+          selected={wallet.id === selectedWallet?.id}
+          onClick={() => handleWalletSelect(wallet)}
+        >
           <ListItemAvatar>
             <Avatar>
               <AccountBalanceWallet />
@@ -31,7 +36,7 @@ const WalletList: React.FunctionComponent<WalletListProps> = ({
         </ListItemButton>
       ))}
     </List>
-  );
-};
+  )
+}
 
-export default WalletList;
+export default WalletList
