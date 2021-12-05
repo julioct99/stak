@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useSubcategories } from '../../shared/api/queries'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
 import { TransactionSubcategory } from '../../shared/types/transactionSubcategory'
+import NoResults from '../NoResults'
 
 interface SubcategoryListProps {
   category: TransactionCategory
@@ -24,6 +25,8 @@ const SubcategoryList: React.FunctionComponent<SubcategoryListProps> = ({
     setSelectedSubcategory(subcategory)
     onSelectSubcategory(subcategory)
   }
+
+  if (subcategories.data?.length === 0) return <NoResults />
 
   return (
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>

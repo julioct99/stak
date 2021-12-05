@@ -1,14 +1,15 @@
-import { Receipt } from '@mui/icons-material';
-import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material';
-import { Transaction } from '../../../shared/types/transaction';
+import { Receipt } from '@mui/icons-material'
+import { List, ListItem, ListItemIcon, ListItemText, Divider } from '@mui/material'
+import { Transaction } from '../../../shared/types/transaction'
+import NoResults from '../../NoResults'
 
 interface TransactionListProps {
-  transactions: Transaction[];
+  transactions: Transaction[]
 }
 
 const renderTransactionItem = (transaction: Transaction, index: number) => {
-  const amountColor = transaction.amount <= 0 ? 'red' : 'green';
-  const date = new Date(transaction.date).toLocaleDateString();
+  const amountColor = transaction.amount <= 0 ? 'red' : 'green'
+  const date = new Date(transaction.date).toLocaleDateString()
 
   return (
     <>
@@ -27,13 +28,15 @@ const renderTransactionItem = (transaction: Transaction, index: number) => {
         />
       </ListItem>
     </>
-  );
-};
+  )
+}
 
 const TransactionList: React.FunctionComponent<TransactionListProps> = ({
   transactions,
 }) => {
-  return <List dense>{transactions.map(renderTransactionItem)}</List>;
-};
+  if (transactions.length === 0) return <NoResults />
 
-export default TransactionList;
+  return <List dense>{transactions.map(renderTransactionItem)}</List>
+}
+
+export default TransactionList

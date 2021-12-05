@@ -2,6 +2,7 @@ import { Folder } from '@mui/icons-material'
 import { List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import { useState } from 'react'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
+import NoResults from '../NoResults'
 
 interface CategoryListProps {
   categories: TransactionCategory[] | undefined
@@ -20,6 +21,8 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
     setSelectedCategory(category)
     onSelectCategory(category)
   }
+
+  if (categories?.length === 0) return <NoResults />
 
   return (
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
