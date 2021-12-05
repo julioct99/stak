@@ -1,19 +1,12 @@
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/layout/Layout/Layout';
-import CategoriesPage from './pages/Categories/CategoriesPage';
-import HomePage from './pages/Home/HomePage';
-import WalletsPage from './pages/Wallets/WalletsPage';
+import AppRoutes from './AppRoutes'
+import Layout from './components/layout/Layout/Layout'
 
 function App() {
   return (
     <Layout>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='wallets' element={<WalletsPage />} />
-        <Route path='categories' element={<CategoriesPage />} />
-      </Routes>
+      <AppRoutes />
     </Layout>
-  );
+  )
 }
 
-export default App;
+export default App

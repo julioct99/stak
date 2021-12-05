@@ -1,4 +1,4 @@
-import { Category } from '@mui/icons-material'
+import { Folder } from '@mui/icons-material'
 import { List, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
 
@@ -16,7 +16,7 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
       {categories?.map((category) => (
         <ListItemButton onClick={() => onSelectCategory(category)}>
           <ListItemAvatar>
-            <Category />
+            <Folder />
           </ListItemAvatar>
           <ListItemText primary={category.name} />
         </ListItemButton>
