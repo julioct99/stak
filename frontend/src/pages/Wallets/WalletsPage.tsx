@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
 import { useWallets } from '../../shared/api/queries'
 import { Wallet } from '../../shared/types/wallet'
-import WalletDetail from './WalletDetail/WalletDetail'
-import WalletList from './WalletList'
+import WalletDetail from '../../components/wallets/WalletDetail/WalletDetail'
+import WalletList from '../../components/wallets/WalletList'
 
 interface WalletsPageProps {}
 

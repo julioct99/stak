@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
 import { useCategories } from '../../shared/api/queries'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
-import CategoryDetail from './CategoryDetail'
-import CategoryList from './CategoryList'
+import CategoryDetail from '../../components/categories/CategoryDetail'
+import CategoryList from '../../components/categories/CategoryList'
 
 interface CategoriesPageProps {}
 

@@ -2,7 +2,7 @@ import { Divider, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useCategory, useCategoryTransactions } from '../../shared/api/queries'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
-import TransactionList from '../Wallets/WalletDetail/TransactionList'
+import TransactionList from '../wallets/WalletDetail/TransactionList'
 
 interface CategoryDetailProps {
   category: TransactionCategory
