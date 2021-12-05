@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import { useState } from 'react'
 import CategoryList from '../../components/categories/CategoryList'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
+import SubcategoryDetail from '../../components/subcategories/SubcategoryDetail'
 import SubcategoryList from '../../components/subcategories/SubcategoryList'
 import { useCategories } from '../../shared/api/queries'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
@@ -50,7 +51,9 @@ const SubcategoriesPage: React.FunctionComponent<SubcategoriesPageProps> = () =>
       )}
       {selectedSubcategory && (
         <Grid item xs={6}>
-          <GridItemContent>{JSON.stringify(selectedSubcategory)}</GridItemContent>
+          <GridItemContent>
+            <SubcategoryDetail subcategory={selectedSubcategory} />
+          </GridItemContent>
         </Grid>
       )}
     </Grid>
