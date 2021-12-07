@@ -24,6 +24,7 @@ const WalletList: React.FunctionComponent<WalletListProps> = ({
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
       {wallets?.map((wallet) => (
         <ListItemButton
+          key={wallet.id}
           selected={wallet.id === selectedWallet?.id}
           onClick={() => handleWalletSelect(wallet)}
         >
