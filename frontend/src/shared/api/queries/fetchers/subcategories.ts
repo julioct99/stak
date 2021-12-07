@@ -3,7 +3,7 @@ import {
   getSubcategoryDetailUrl,
   getSubcategoryListUrl,
   getSubcategoryTransactionListUrl,
-} from '../urls'
+} from '../../urls'
 
 export const fetchSubcategories = async (categoryId: number) => {
   const url = getSubcategoryListUrl(categoryId)

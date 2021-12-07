@@ -3,7 +3,7 @@ import {
   getCategoryDetailUrl,
   getCategoryListUrl,
   getCategoryTransactionListUrl,
-} from '../urls'
+} from '../../urls'
 
 export const fetchCategories = async () => {
   const url = getCategoryListUrl()

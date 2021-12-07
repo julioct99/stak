@@ -1,9 +1,9 @@
 import axios from 'axios'
 import {
-  getWalletTransactionListUrl,
-  getWalletDetailUrl,
   getWalletListUrl,
-} from '../urls'
+  getWalletDetailUrl,
+  getWalletTransactionListUrl,
+} from '../../urls'
 
 export const fetchWallets = async () => {
   const url = getWalletListUrl()

@@ -1,7 +1,7 @@
 import { Box, Button, Container, TextField, Typography, useTheme } from '@mui/material'
 import { useRef } from 'react'
-import { addWallet } from '../../shared/api/posters'
 import { useWallets } from '../../shared/api/queries'
+import { WalletService } from '../../shared/api/services'
 import { WalletPost } from '../../shared/types/wallet'
 
 interface WalletFormProps {
@@ -24,7 +24,7 @@ const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode, onSubm
       owner: 1,
     }
 
-    addWallet(wallet).then(() => wallets.refetch())
+    WalletService.create(wallet).then(() => wallets.refetch())
     onSubmit()
   }
 

@@ -5,7 +5,7 @@ import {
   fetchSubcategories,
   fetchSubcategory,
   fetchSubcategoryTransactions,
-} from '../fetchers'
+} from './fetchers'
 import { BASE_NAMES } from '../../settings/api'
 
 export function useSubcategories(categoryId: number) {

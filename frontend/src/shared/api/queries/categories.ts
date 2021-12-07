@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { Transaction } from '../../types/transaction'
 import { TransactionCategory } from '../../types/transactionCategory'
-import { fetchCategories, fetchCategory, fetchCategoryTransactions } from '../fetchers'
+import { fetchCategories, fetchCategory, fetchCategoryTransactions } from './fetchers'
 import { BASE_NAMES } from '../../settings/api'
 
 export function useCategories() {

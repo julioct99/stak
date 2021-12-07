@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { Transaction } from '../../types/transaction'
 import { Wallet } from '../../types/wallet'
-import { fetchWalletTransactions, fetchWallet, fetchWallets } from '../fetchers'
+import { fetchWalletTransactions, fetchWallet, fetchWallets } from './fetchers'
 import { BASE_NAMES } from '../../settings/api'
 
 export function useWallets() {
