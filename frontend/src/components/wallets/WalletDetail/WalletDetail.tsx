@@ -1,5 +1,5 @@
 import { Box, Divider, Typography } from '@mui/material'
-import { useTransactions, useWallet } from '../../../shared/api/queries'
+import { useWalletTransactions, useWallet } from '../../../shared/api/queries'
 import { Wallet } from '../../../shared/types/wallet'
 import TransactionList from './TransactionList'
 import WalletBalance from './WalletBalance'
@@ -10,7 +10,7 @@ interface WalletDetailProps {
 
 const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({ wallet }) => {
   const internalWallet = useWallet(wallet.id)
-  const transactions = useTransactions(wallet.id)
+  const transactions = useWalletTransactions(wallet.id)
 
   return (
     <Box padding={2}>
