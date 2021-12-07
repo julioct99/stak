@@ -3,11 +3,11 @@ import { getCategoryDetailUrl } from './categories'
 
 export const getSubcategoryListUrl = (categoryId: number) => {
   const parentCategoryUrl = getCategoryDetailUrl(categoryId)
-  return `${parentCategoryUrl}/${BASE_NAMES.SUBCATEGORIES}`
+  return `${parentCategoryUrl}/${BASE_NAMES.SUBCATEGORIES}/`
 }
 
 export const getSubcategoryDetailUrl = (categoryId: number, subcategoryId: number) => {
-  return `${getSubcategoryListUrl(categoryId)}/${subcategoryId}`
+  return `${getSubcategoryListUrl(categoryId)}${subcategoryId}`
 }
 
 export const getSubcategoryTransactionListUrl = (

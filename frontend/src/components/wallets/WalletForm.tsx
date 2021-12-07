@@ -1,14 +1,19 @@
 import { Box, Button, Container, TextField, Typography, useTheme } from '@mui/material'
 import { useRef } from 'react'
+import { addWallet } from '../../shared/api/posters'
+import { useWallets } from '../../shared/api/queries'
 import { WalletPost } from '../../shared/types/wallet'
 
 interface WalletFormProps {
   editMode?: boolean
+  onSubmit: () => void
 }
 
-const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode }) => {
+const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode, onSubmit }) => {
   const titleInputRef = useRef<HTMLInputElement>()
   const balanceInputRef = useRef<HTMLInputElement>()
+
+  const wallets = useWallets()
 
   const theme = useTheme()
 
@@ -18,6 +23,9 @@ const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode }) => {
       title: titleInputRef.current?.value || '',
       owner: 1,
     }
+
+    addWallet(wallet).then(() => wallets.refetch())
+    onSubmit()
   }
 
   const inputStyle = { display: 'block', marginBottom: theme.spacing(2) }
@@ -43,6 +51,7 @@ const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode }) => {
             label='Balance'
             sx={inputStyle}
             inputRef={balanceInputRef}
+            defaultValue={0}
           />
         </Box>
         <Button variant='contained' color='primary' onClick={handleSubmit}>

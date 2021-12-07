@@ -16,7 +16,7 @@ const WalletFormModal: React.FunctionComponent<WalletFormModalProps> = ({
       <Modal onClose={onModalClose} open={modalOpen}>
         <Card sx={{ width: '750px' }}>
           <CardContent>
-            <WalletForm />
+            <WalletForm onSubmit={onModalClose} />
           </CardContent>
         </Card>
       </Modal>

@@ -1,11 +1,11 @@
 import { BASE_URL, BASE_NAMES } from '../../settings/api'
 
 export const getWalletListUrl = () => {
-  return `${BASE_URL}/${BASE_NAMES.WALLETS}`
+  return `${BASE_URL}/${BASE_NAMES.WALLETS}/`
 }
 
 export const getWalletDetailUrl = (walletId: number) => {
-  return `${getWalletListUrl()}/${walletId}`
+  return `${getWalletListUrl()}${walletId}`
 }
 
 export const getWalletTransactionListUrl = (walletId: number) => {

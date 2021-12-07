@@ -1,11 +1,11 @@
 import { BASE_URL, BASE_NAMES } from '../../settings/api'
 
 export const getCategoryListUrl = () => {
-  return `${BASE_URL}/${BASE_NAMES.CATEGORIES}`
+  return `${BASE_URL}/${BASE_NAMES.CATEGORIES}/`
 }
 
 export const getCategoryDetailUrl = (categoryId: number) => {
-  return `${getCategoryListUrl()}/${categoryId}`
+  return `${getCategoryListUrl()}${categoryId}`
 }
 
 export const getCategoryTransactionListUrl = (categoryId: number) => {

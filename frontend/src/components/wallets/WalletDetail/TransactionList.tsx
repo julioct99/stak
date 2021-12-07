@@ -12,7 +12,7 @@ const renderTransactionItem = (transaction: Transaction, index: number) => {
   const date = new Date(transaction.date).toLocaleDateString()
 
   return (
-    <>
+    <div key={transaction.id}>
       {index > 0 && <Divider />}
       <ListItem>
         <ListItemIcon>
@@ -27,7 +27,7 @@ const renderTransactionItem = (transaction: Transaction, index: number) => {
           secondary={date}
         />
       </ListItem>
-    </>
+    </div>
   )
 }
 
