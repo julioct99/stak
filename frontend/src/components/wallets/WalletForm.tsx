@@ -19,17 +19,18 @@ interface WalletFormProps {
 }
 
 const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode, onSubmit }) => {
+  const wallets = useWallets()
+  const theme = useTheme()
+
   const titleInputRef = useRef<HTMLInputElement>()
   const balanceInputRef = useRef<HTMLInputElement>()
 
-  const wallets = useWallets()
-
-  const theme = useTheme()
-
   const handleSubmit = () => {
+    if (!balanceInputRef.current || !titleInputRef.current) return
+
     const wallet: WalletPost = {
-      balance: balanceInputRef.current?.valueAsNumber || 0,
-      title: titleInputRef.current?.value || '',
+      balance: balanceInputRef.current.valueAsNumber,
+      title: titleInputRef.current.value,
       owner: 1,
     }
 

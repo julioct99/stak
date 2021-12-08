@@ -16,7 +16,6 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const theme = useTheme()
-
   const wallets = useWallets()
 
   const handleWalletSelect = (wallet: Wallet) => {
