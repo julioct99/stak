@@ -5,8 +5,9 @@ import { useWallets } from '../../shared/api/queries'
 import { Wallet } from '../../shared/types/wallet'
 import WalletDetail from '../../components/wallets/WalletDetail/WalletDetail'
 import WalletList from '../../components/wallets/WalletList'
-import WalletFormModal from '../../components/wallets/WalletFormModal'
 import { Add } from '@mui/icons-material'
+import Modal from '../../components/Modal'
+import WalletForm from '../../components/wallets/WalletForm'
 
 interface WalletsPageProps {}
 
@@ -28,7 +29,9 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
 
   return (
     <>
-      <WalletFormModal modalOpen={modalOpen} onModalClose={handleModalClose} />
+      <Modal open={modalOpen} onClose={handleModalClose}>
+        <WalletForm onSubmit={handleModalClose} />
+      </Modal>
       {wallets.isLoading ? <p>Loading...</p> : null}
       <Grid container spacing={2} marginTop={3}>
         <Grid item xs={3}>

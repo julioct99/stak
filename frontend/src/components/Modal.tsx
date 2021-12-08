@@ -31,7 +31,7 @@ const Modal: React.FunctionComponent<ModalUnstyledProps> = ({
   return (
     <StyledModal open={open} BackdropComponent={Backdrop} {...props}>
       <Fade timeout={200} in={open}>
-        {children}
+        <div>{children}</div>
       </Fade>
     </StyledModal>
   )

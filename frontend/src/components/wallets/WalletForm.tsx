@@ -1,4 +1,13 @@
-import { Box, Button, Container, TextField, Typography, useTheme } from '@mui/material'
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Container,
+  TextField,
+  Typography,
+  useTheme,
+} from '@mui/material'
 import { useRef } from 'react'
 import { useWallets } from '../../shared/api/queries'
 import { WalletService } from '../../shared/api/services'
@@ -34,31 +43,35 @@ const WalletForm: React.FunctionComponent<WalletFormProps> = ({ editMode, onSubm
   const actionName = editMode ? 'Save' : 'Add'
 
   return (
-    <form>
-      <Container>
-        <Typography variant='h3'>{formTitle}</Typography>
-        <Box marginBottom={2} marginTop={2}>
-          <TextField
-            type='text'
-            fullWidth
-            label='Title'
-            sx={inputStyle}
-            inputRef={titleInputRef}
-          />
-          <TextField
-            type='number'
-            fullWidth
-            label='Balance'
-            sx={inputStyle}
-            inputRef={balanceInputRef}
-            defaultValue={0}
-          />
-        </Box>
-        <Button variant='contained' color='primary' onClick={handleSubmit}>
-          {actionName}
-        </Button>
-      </Container>
-    </form>
+    <Card sx={{ width: '750px' }}>
+      <CardContent>
+        <form>
+          <Container>
+            <Typography variant='h3'>{formTitle}</Typography>
+            <Box marginBottom={2} marginTop={2}>
+              <TextField
+                type='text'
+                fullWidth
+                label='Title'
+                sx={inputStyle}
+                inputRef={titleInputRef}
+              />
+              <TextField
+                type='number'
+                fullWidth
+                label='Balance'
+                sx={inputStyle}
+                inputRef={balanceInputRef}
+                defaultValue={0}
+              />
+            </Box>
+            <Button variant='contained' color='primary' onClick={handleSubmit}>
+              {actionName}
+            </Button>
+          </Container>
+        </form>
+      </CardContent>
+    </Card>
   )
 }
 
