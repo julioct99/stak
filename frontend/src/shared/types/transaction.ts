@@ -1,8 +1,11 @@
-export interface Transaction {
-  id: number;
-  amount: number;
-  creationDate: string;
-  date: string;
-  wallet: number;
-  subcategory: number | null;
+export interface TransactionPost {
+  amount: number
+  date: string
+  wallet: number
+  subcategory: number | null
+}
+
+export interface Transaction extends TransactionPost {
+  id: number
+  creationDate: string
 }

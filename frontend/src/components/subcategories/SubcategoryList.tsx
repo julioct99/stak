@@ -32,6 +32,7 @@ const SubcategoryList: React.FunctionComponent<SubcategoryListProps> = ({
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
       {subcategories.data?.map((subcategory) => (
         <ListItemButton
+          key={subcategory.id}
           selected={subcategory.id === selectedSubcategory?.id}
           onClick={() => handleSubcategorySelect(subcategory)}
         >

@@ -12,15 +12,13 @@ const WalletFormModal: React.FunctionComponent<WalletFormModalProps> = ({
   onModalClose,
 }) => {
   return (
-    <>
-      <Modal onClose={onModalClose} open={modalOpen}>
-        <Card sx={{ width: '750px' }}>
-          <CardContent>
-            <WalletForm onSubmit={onModalClose} />
-          </CardContent>
-        </Card>
-      </Modal>
-    </>
+    <Modal onClose={onModalClose} open={modalOpen}>
+      <Card sx={{ width: '750px' }}>
+        <CardContent>
+          <WalletForm onSubmit={onModalClose} />
+        </CardContent>
+      </Card>
+    </Modal>
   )
 }
 
