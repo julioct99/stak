@@ -8,10 +8,11 @@ import {
 } from './fetchers'
 import { BASE_NAMES } from '../../settings/api'
 
-export function useSubcategories(categoryId: number) {
+export function useSubcategories(categoryId: number | undefined) {
   return useQuery<TransactionSubcategory[], Error>(
     [BASE_NAMES.SUBCATEGORIES, categoryId],
-    () => fetchSubcategories(categoryId)
+    () => fetchSubcategories(categoryId || -1),
+    { enabled: !!categoryId }
   )
 }
 
