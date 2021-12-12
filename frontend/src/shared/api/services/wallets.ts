@@ -11,4 +11,8 @@ export const WalletService = {
     const url = getWalletDetailUrl(wallet.id)
     return axios.put<Wallet>(url, wallet)
   },
+  delete: async (wallet: Wallet) => {
+    const url = getWalletDetailUrl(wallet.id)
+    return axios.delete(url)
+  },
 }

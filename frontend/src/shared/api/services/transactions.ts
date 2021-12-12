@@ -12,4 +12,8 @@ export const TransactionService = {
     const url = getWalletTransactionDetailUrl(transaction.wallet, transaction.id)
     return axios.put<Transaction>(url, transaction)
   },
+  delete: async (transaction: Transaction) => {
+    const url = getWalletTransactionDetailUrl(transaction.wallet, transaction.id)
+    return axios.delete(url)
+  },
 }

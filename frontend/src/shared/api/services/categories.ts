@@ -14,4 +14,8 @@ export const CategoryService = {
     const url = getCategoryDetailUrl(category.id)
     return axios.put<TransactionCategory>(url, category)
   },
+  delete: async (category: TransactionCategory) => {
+    const url = getCategoryDetailUrl(category.id)
+    return axios.delete(url)
+  },
 }
