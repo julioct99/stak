@@ -18,11 +18,14 @@ const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const theme = useTheme()
-
   const categories = useCategories()
 
   const handleCategorySelect = (category: TransactionCategory) => {
     setSelectedCategory(category)
+  }
+
+  const handleCategoryDeselect = () => {
+    setSelectedCategory(undefined)
   }
 
   const handleModalClose = () => {
@@ -47,7 +50,10 @@ const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
         {selectedCategory && (
           <Grid item xs={9}>
             <GridItemContent>
-              <CategoryDetail category={selectedCategory} />
+              <CategoryDetail
+                category={selectedCategory}
+                onCategoryDeselect={handleCategoryDeselect}
+              />
             </GridItemContent>
           </Grid>
         )}

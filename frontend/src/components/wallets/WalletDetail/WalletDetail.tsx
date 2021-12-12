@@ -20,7 +20,6 @@ const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
 
   const wallets = useWallets()
-
   const internalWallet = useWallet(wallet.id)
   const transactions = useWalletTransactions(wallet.id)
 
@@ -31,11 +30,11 @@ const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({
     })
   }
 
-  const handleDialogOpen = () => {
+  const handleDeleteDialogOpen = () => {
     setDeleteDialogOpen(true)
   }
 
-  const handleDialogClose = () => {
+  const handleDeleteDialogClose = () => {
     setDeleteDialogOpen(false)
   }
 
@@ -43,15 +42,15 @@ const WalletDetail: React.FunctionComponent<WalletDetailProps> = ({
     <>
       <ConfirmDialog
         open={deleteDialogOpen}
-        title={`Deleting wallet ${wallet.title}`}
+        title={`Deleting wallet: ${wallet.title}`}
         content='Are you sure you want to delete the wallet?'
-        onClose={handleDialogClose}
+        onClose={handleDeleteDialogClose}
         onConfirm={handleConfirmDelete}
       />
       <Box padding={2}>
         <CardHeader
           action={
-            <IconButton onClick={handleDialogOpen} size='large' color='error'>
+            <IconButton onClick={handleDeleteDialogOpen} size='large' color='error'>
               <Delete />
             </IconButton>
           }
