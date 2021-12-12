@@ -22,6 +22,10 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
     setSelectedWallet(wallet)
   }
 
+  const handleWalletDeselect = () => {
+    setSelectedWallet(undefined)
+  }
+
   const handleModalClose = () => {
     setModalOpen(false)
   }
@@ -41,7 +45,10 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
         {selectedWallet && (
           <Grid item xs={9}>
             <GridItemContent>
-              <WalletDetail wallet={selectedWallet} />
+              <WalletDetail
+                wallet={selectedWallet}
+                onWalletDeselect={handleWalletDeselect}
+              />
             </GridItemContent>
           </Grid>
         )}

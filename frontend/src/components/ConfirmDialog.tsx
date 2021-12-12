@@ -8,8 +8,8 @@ import {
 } from '@mui/material'
 
 interface ConfirmDialogProps {
-  onConfirm?: () => void
-  onClose?: () => void
+  onConfirm: () => void
+  onClose: () => void
   title: string
   content: string
   open: boolean
@@ -22,6 +22,11 @@ const ConfirmDialog: React.FunctionComponent<ConfirmDialogProps> = ({
   content,
   open,
 }) => {
+  const handleConfirm = () => {
+    onConfirm()
+    onClose()
+  }
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>{title}</DialogTitle>
@@ -29,10 +34,10 @@ const ConfirmDialog: React.FunctionComponent<ConfirmDialogProps> = ({
         <DialogContentText>{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onClose}>
+        <Button color='warning' autoFocus onClick={onClose}>
           Cancel
         </Button>
-        <Button autoFocus onClick={onConfirm}>
+        <Button autoFocus onClick={handleConfirm}>
           Confirm
         </Button>
       </DialogActions>
