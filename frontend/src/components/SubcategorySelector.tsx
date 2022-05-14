@@ -7,6 +7,7 @@ import {
   useTheme,
 } from '@mui/material'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useCategories, useSubcategories } from '../shared/api/queries'
 
 interface SubcategorySelectorProps {
@@ -32,38 +33,68 @@ const SubcategorySelector: React.FunctionComponent<SubcategorySelectorProps> = (
     onSubcategorySelect(+e.target.value)
   }
 
+  const categorySelector = (
+    <>
+      <InputLabel id='category'>Category</InputLabel>
+      <Select
+        label='Category'
+        labelId='category'
+        sx={inputStyle}
+        onChange={handleCategorySelect}
+      >
+        {categories.data?.map((category) => (
+          <MenuItem key={category.id} value={category.id}>
+            {category.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </>
+  )
+
+  const subcategorySelector = (
+    <>
+      <InputLabel id='subcategory'>Subcategory</InputLabel>
+      <Select
+        label='Subcategory'
+        labelId='subcategory'
+        sx={inputStyle}
+        onChange={handleSubcategorySelect}
+      >
+        {subcategories.data?.map((subcategory) => (
+          <MenuItem key={subcategory.id} value={subcategory.id}>
+            {subcategory.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </>
+  )
+
+  const noCategoriesMessage = (
+    <p>
+      Yo have no categories. Create one in the{' '}
+      <Link to='/categories'>categories page</Link>.
+    </p>
+  )
+
+  const noSubcategoriesMessage = (
+    <p>
+      Yo have no subcategories. Create one in the{' '}
+      <Link to='/subcategories'>subcategories page</Link>.
+    </p>
+  )
+
+  const shouldShowCategorySelector = categories.data && categories.data.length > 0
+  const shouldShowSubcategorySelector =
+    subcategories.data && subcategories.data.length > 0 && shouldShowCategorySelector
+
   return (
     <>
       <FormControl fullWidth>
-        <InputLabel id='category'>Category</InputLabel>
-        <Select
-          label='Category'
-          labelId='category'
-          sx={inputStyle}
-          onChange={handleCategorySelect}
-        >
-          {categories.data?.map((category) => (
-            <MenuItem key={category.id} value={category.id}>
-              {category.name}
-            </MenuItem>
-          ))}
-        </Select>
+        {shouldShowCategorySelector ? categorySelector : noCategoriesMessage}
       </FormControl>
       {!!selectedCategoryId && (
         <FormControl fullWidth>
-          <InputLabel id='subcategory'>Subcategory</InputLabel>
-          <Select
-            label='Subcategory'
-            labelId='subcategory'
-            sx={inputStyle}
-            onChange={handleSubcategorySelect}
-          >
-            {subcategories.data?.map((subcategory) => (
-              <MenuItem key={subcategory.id} value={subcategory.id}>
-                {subcategory.name}
-              </MenuItem>
-            ))}
-          </Select>
+          {shouldShowSubcategorySelector ? subcategorySelector : noSubcategoriesMessage}
         </FormControl>
       )}
     </>

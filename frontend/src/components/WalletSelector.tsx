@@ -6,6 +6,7 @@ import {
   SelectChangeEvent,
   useTheme,
 } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { useWallets } from '../shared/api/queries'
 
 interface WalletSelectorProps {
@@ -24,8 +25,8 @@ const WalletSelector: React.FunctionComponent<WalletSelectorProps> = ({
     onWalletSelect(+e.target.value)
   }
 
-  return (
-    <FormControl fullWidth>
+  const selector = (
+    <>
       <InputLabel id='walletId'>Wallet</InputLabel>
       <Select
         label='Wallet'
@@ -39,6 +40,20 @@ const WalletSelector: React.FunctionComponent<WalletSelectorProps> = ({
           </MenuItem>
         ))}
       </Select>
+    </>
+  )
+
+  const noWalletsMessage = (
+    <p>
+      Yo have no wallets. Create one in the <Link to='/wallets'>wallets page</Link>.
+    </p>
+  )
+
+  const shouldShowSelector = wallets.data && wallets.data?.length > 0
+
+  return (
+    <FormControl fullWidth>
+      {shouldShowSelector ? selector : noWalletsMessage}
     </FormControl>
   )
 }
