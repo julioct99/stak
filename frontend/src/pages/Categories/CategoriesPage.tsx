@@ -1,13 +1,13 @@
-import { Fab, Grid, useTheme } from '@mui/material'
+import { Grid, useTheme } from '@mui/material'
 import { useState } from 'react'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
 import { useCategories } from '../../shared/api/queries'
 import { TransactionCategory } from '../../shared/types/transactionCategory'
 import CategoryDetail from '../../components/categories/CategoryDetail'
 import CategoryList from '../../components/categories/CategoryList'
-import { Add } from '@mui/icons-material'
 import Modal from '../../components/Modal'
 import CategoryForm from '../../components/categories/CategoryForm'
+import PageFabs from '../../components/PageFabs'
 
 interface CategoriesPageProps {}
 
@@ -17,7 +17,6 @@ const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
   >()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const theme = useTheme()
   const categories = useCategories()
 
   const handleCategorySelect = (category: TransactionCategory) => {
@@ -58,14 +57,7 @@ const CategoriesPage: React.FunctionComponent<CategoriesPageProps> = () => {
           </Grid>
         )}
       </Grid>
-      <Fab
-        size='large'
-        color='primary'
-        onClick={() => setModalOpen(true)}
-        sx={{ position: 'absolute', bottom: theme.spacing(4), right: theme.spacing(4) }}
-      >
-        <Add />
-      </Fab>
+      <PageFabs onMainFabClick={() => setModalOpen(true)} mainFabTitle='Add Category' />
     </>
   )
 }

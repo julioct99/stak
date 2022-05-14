@@ -1,13 +1,13 @@
-import { Fab, Grid, useTheme } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState } from 'react'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
 import { useWallets } from '../../shared/api/queries'
 import { Wallet } from '../../shared/types/wallet'
 import WalletDetail from '../../components/wallets/WalletDetail/WalletDetail'
 import WalletList from '../../components/wallets/WalletList'
-import { Add } from '@mui/icons-material'
 import Modal from '../../components/Modal'
 import WalletForm from '../../components/wallets/WalletForm'
+import PageFabs from '../../components/PageFabs'
 
 interface WalletsPageProps {}
 
@@ -15,7 +15,6 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
   const [selectedWallet, setSelectedWallet] = useState<Wallet | undefined>()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const theme = useTheme()
   const wallets = useWallets()
 
   const handleWalletSelect = (wallet: Wallet) => {
@@ -53,14 +52,7 @@ const WalletsPage: React.FunctionComponent<WalletsPageProps> = () => {
           </Grid>
         )}
       </Grid>
-      <Fab
-        size='large'
-        color='primary'
-        onClick={() => setModalOpen(true)}
-        sx={{ position: 'absolute', bottom: theme.spacing(4), right: theme.spacing(4) }}
-      >
-        <Add />
-      </Fab>
+      <PageFabs onMainFabClick={() => setModalOpen(true)} mainFabTitle='Add Wallet' />
     </>
   )
 }

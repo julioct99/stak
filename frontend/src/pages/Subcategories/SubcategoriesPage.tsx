@@ -1,9 +1,9 @@
-import { Add } from '@mui/icons-material'
-import { Fab, Grid, useTheme } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState } from 'react'
 import CategoryList from '../../components/categories/CategoryList'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
 import Modal from '../../components/Modal'
+import PageFabs from '../../components/PageFabs'
 import SubcategoryDetail from '../../components/subcategories/SubcategoryDetail'
 import SubcategoryForm from '../../components/subcategories/SubcategoryForm'
 import SubcategoryList from '../../components/subcategories/SubcategoryList'
@@ -22,7 +22,6 @@ const SubcategoriesPage: React.FunctionComponent<SubcategoriesPageProps> = () =>
   >()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const theme = useTheme()
   const categories = useCategories()
 
   const handleCategorySelect = (category: TransactionCategory) => {
@@ -71,14 +70,10 @@ const SubcategoriesPage: React.FunctionComponent<SubcategoriesPageProps> = () =>
           </Grid>
         )}
       </Grid>
-      <Fab
-        size='large'
-        color='primary'
-        onClick={() => setModalOpen(true)}
-        sx={{ position: 'absolute', bottom: theme.spacing(4), right: theme.spacing(4) }}
-      >
-        <Add />
-      </Fab>
+      <PageFabs
+        onMainFabClick={() => setModalOpen(true)}
+        mainFabTitle='Add Subcategory'
+      />
     </>
   )
 }
