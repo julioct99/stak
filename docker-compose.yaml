@@ -1,5 +1,4 @@
 version: "3.9"
-   
 services:
   backend:
     build: backend
@@ -7,6 +6,17 @@ services:
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/backend
+      - ./backend:/app
     ports:
       - "8000:8000"
+  
+  db:
+    build: docker/postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_URL: postgres://admin:password@localhost:5432/stak
+      POSTGRES_DB: stak
+      POSTGRES_HOST: postgres
+    ports:
+      - "5432:5432"
