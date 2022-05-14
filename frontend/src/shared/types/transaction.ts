@@ -3,6 +3,7 @@ export interface TransactionPost {
   date: string
   wallet: number
   subcategory: number | null
+  description: string
 }
 
 export interface Transaction extends TransactionPost {

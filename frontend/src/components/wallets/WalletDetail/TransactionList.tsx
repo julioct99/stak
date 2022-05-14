@@ -10,6 +10,9 @@ interface TransactionListProps {
 const renderTransactionItem = (transaction: Transaction, index: number) => {
   const amountColor = transaction.amount <= 0 ? 'red' : 'green'
   const date = new Date(transaction.date).toLocaleDateString()
+  const transactionSecondary = transaction.description
+    ? `${date}: ${transaction.description}`
+    : date
 
   return (
     <div key={transaction.id}>
@@ -24,7 +27,7 @@ const renderTransactionItem = (transaction: Transaction, index: number) => {
             fontWeight: 'bold',
             color: amountColor,
           }}
-          secondary={date}
+          secondary={transactionSecondary}
         />
       </ListItem>
     </div>

@@ -37,6 +37,7 @@ const TransactionForm: React.FunctionComponent<TransactionFormProps> = ({
   const theme = useTheme()
 
   const amountInputRef = useRef<HTMLInputElement>()
+  const descriptionInputRef = useRef<HTMLInputElement>()
 
   const handleDateChange = (newValue: Date | null) => {
     setSelectedDate(newValue)
@@ -45,6 +46,7 @@ const TransactionForm: React.FunctionComponent<TransactionFormProps> = ({
   const handleSubmit = async () => {
     const transaction: TransactionPost = {
       amount: amountInputRef.current?.valueAsNumber || 0,
+      description: descriptionInputRef.current?.value || '',
       date: toDjangoDateString(selectedDate),
       subcategory: selectedSubcategory || -1,
       wallet: selectedWallet || -1,
@@ -74,6 +76,13 @@ const TransactionForm: React.FunctionComponent<TransactionFormProps> = ({
             fullWidth
             label='Amount'
             inputRef={amountInputRef}
+            sx={inputStyle}
+          />
+          <TextField
+            type='text'
+            fullWidth
+            label='Description'
+            inputRef={descriptionInputRef}
             sx={inputStyle}
           />
           <LocalizationProvider dateAdapter={AdapterDateFns}>
