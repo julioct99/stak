@@ -3,6 +3,7 @@ import { Avatar, List, ListItemAvatar, ListItemButton, ListItemText } from '@mui
 import { useState } from 'react'
 
 import { Wallet } from '../../shared/types/wallet'
+import NoResults from '../NoResults'
 
 interface WalletListProps {
   wallets: Wallet[] | undefined
@@ -19,6 +20,8 @@ const WalletList: React.FunctionComponent<WalletListProps> = ({
     setSelectedWallet(wallet)
     onSelectWallet(wallet)
   }
+
+  if (wallets?.length === 0) return <NoResults />
 
   return (
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
