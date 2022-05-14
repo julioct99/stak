@@ -1,4 +1,11 @@
-import { InputLabel, MenuItem, Select, SelectChangeEvent, useTheme } from '@mui/material'
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  useTheme,
+} from '@mui/material'
 import { useWallets } from '../shared/api/queries'
 
 interface WalletSelectorProps {
@@ -18,7 +25,7 @@ const WalletSelector: React.FunctionComponent<WalletSelectorProps> = ({
   }
 
   return (
-    <>
+    <FormControl fullWidth>
       <InputLabel id='walletId'>Wallet</InputLabel>
       <Select
         label='Wallet'
@@ -32,7 +39,7 @@ const WalletSelector: React.FunctionComponent<WalletSelectorProps> = ({
           </MenuItem>
         ))}
       </Select>
-    </>
+    </FormControl>
   )
 }
 

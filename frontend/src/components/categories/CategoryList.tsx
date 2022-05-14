@@ -28,6 +28,7 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
       {categories?.map((category) => (
         <ListItemButton
+          key={category.id}
           selected={category.id === selectedCategory?.id}
           onClick={() => handleCategorySelect(category)}
         >
