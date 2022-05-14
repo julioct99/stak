@@ -1,4 +1,4 @@
-import { Grid, useTheme } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useState } from 'react'
 import { GridItemContent } from '../../components/layout/GridItemContent/GridItemContent'
 import { useCategories } from '../../shared/api/queries'
