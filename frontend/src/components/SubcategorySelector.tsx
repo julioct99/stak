@@ -49,21 +49,23 @@ const SubcategorySelector: React.FunctionComponent<SubcategorySelectorProps> = (
           ))}
         </Select>
       </FormControl>
-      <FormControl fullWidth>
-        <InputLabel id='subcategory'>Subcategory</InputLabel>
-        <Select
-          label='Subcategory'
-          labelId='subcategory'
-          sx={inputStyle}
-          onChange={handleSubcategorySelect}
-        >
-          {subcategories.data?.map((subcategory) => (
-            <MenuItem key={subcategory.id} value={subcategory.id}>
-              {subcategory.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      {!!selectedCategoryId && (
+        <FormControl fullWidth>
+          <InputLabel id='subcategory'>Subcategory</InputLabel>
+          <Select
+            label='Subcategory'
+            labelId='subcategory'
+            sx={inputStyle}
+            onChange={handleSubcategorySelect}
+          >
+            {subcategories.data?.map((subcategory) => (
+              <MenuItem key={subcategory.id} value={subcategory.id}>
+                {subcategory.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
     </>
   )
 }
