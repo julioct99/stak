@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 services:
   backend:
     build: backend
@@ -8,15 +8,21 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "8000:8000"
-  
+      - '8000:8000'
+    depends_on:
+      - db
+
   db:
     build: docker/postgres
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
-      POSTGRES_URL: postgres://admin:password@localhost:5432/stak
       POSTGRES_DB: stak
-      POSTGRES_HOST: postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
+    volumes:
+      - vol_db:/var/lib/postgresql/data
+
+volumes:
+  vol_db:
+    driver: local
