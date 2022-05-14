@@ -4,7 +4,6 @@ from django.dispatch import receiver
 from stak.models.transaction_subcategory import TransactionSubcategory
 from stak.models.wallet import Wallet
 
-
 class Transaction(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(
