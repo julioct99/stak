@@ -1,4 +1,5 @@
-import { Fade, ModalUnstyled, ModalUnstyledProps, styled } from '@mui/material'
+import { Fade, ModalUnstyledProps, styled } from '@mui/material'
+import { ModalUnstyled } from '@mui/base'
 
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;

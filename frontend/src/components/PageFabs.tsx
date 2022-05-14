@@ -1,5 +1,8 @@
 import { Add, AddShoppingCart } from '@mui/icons-material'
 import { Fab, useTheme } from '@mui/material'
+import { useState } from 'react'
+import Modal from './Modal'
+import TransactionForm from './transactions/TransactionForm'
 
 interface PageFabsProps {
   onMainFabClick: () => void
@@ -10,14 +13,20 @@ const PageFabs: React.FunctionComponent<PageFabsProps> = ({
   onMainFabClick,
   mainFabTitle,
 }) => {
+  const [transactionModalOpen, setTransactionModalOpen] = useState(false)
+
   const theme = useTheme()
 
   return (
     <>
+      <Modal open={transactionModalOpen} onClose={() => setTransactionModalOpen(false)}>
+        <TransactionForm onSubmit={() => console.log('SUBMIT')} />
+      </Modal>
       <Fab
         size='large'
         color='secondary'
         title='Add Transaction'
+        onClick={() => setTransactionModalOpen(true)}
         sx={{ position: 'absolute', bottom: theme.spacing(16), right: theme.spacing(4) }}
       >
         <AddShoppingCart />
