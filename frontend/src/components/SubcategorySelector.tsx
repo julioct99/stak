@@ -8,7 +8,9 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useCategories, useSubcategories } from '../shared/api/queries'
+
+import { useSubcategories } from '../shared/api/queries'
+import CategorySelector from './CategorySelector'
 
 interface SubcategorySelectorProps {
   onSubcategorySelect: (subcategoryId: number) => void
@@ -19,37 +21,15 @@ const SubcategorySelector: React.FunctionComponent<SubcategorySelectorProps> = (
 }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>()
 
-  const categories = useCategories()
   const subcategories = useSubcategories(selectedCategoryId)
+
   const theme = useTheme()
 
   const inputStyle = { display: 'block', marginBottom: theme.spacing(2) }
 
-  const handleCategorySelect = (e: SelectChangeEvent) => {
-    setSelectedCategoryId(+e.target.value)
-  }
-
   const handleSubcategorySelect = (e: SelectChangeEvent) => {
     onSubcategorySelect(+e.target.value)
   }
-
-  const categorySelector = (
-    <>
-      <InputLabel id='category'>Category</InputLabel>
-      <Select
-        label='Category'
-        labelId='category'
-        sx={inputStyle}
-        onChange={handleCategorySelect}
-      >
-        {categories.data?.map((category) => (
-          <MenuItem key={category.id} value={category.id}>
-            {category.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </>
-  )
 
   const subcategorySelector = (
     <>
@@ -69,13 +49,6 @@ const SubcategorySelector: React.FunctionComponent<SubcategorySelectorProps> = (
     </>
   )
 
-  const noCategoriesMessage = (
-    <p>
-      Yo have no categories. Create one in the{' '}
-      <Link to='/categories'>categories page</Link>.
-    </p>
-  )
-
   const noSubcategoriesMessage = (
     <p>
       Yo have no subcategories. Create one in the{' '}
@@ -83,15 +56,12 @@ const SubcategorySelector: React.FunctionComponent<SubcategorySelectorProps> = (
     </p>
   )
 
-  const shouldShowCategorySelector = categories.data && categories.data.length > 0
   const shouldShowSubcategorySelector =
-    subcategories.data && subcategories.data.length > 0 && shouldShowCategorySelector
+    subcategories.data && subcategories.data.length > 0
 
   return (
     <>
-      <FormControl fullWidth>
-        {shouldShowCategorySelector ? categorySelector : noCategoriesMessage}
-      </FormControl>
+      <CategorySelector onCategorySelect={setSelectedCategoryId} />
       {!!selectedCategoryId && (
         <FormControl fullWidth>
           {shouldShowSubcategorySelector ? subcategorySelector : noSubcategoriesMessage}

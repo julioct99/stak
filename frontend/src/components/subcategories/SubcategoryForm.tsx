@@ -7,16 +7,12 @@ import {
   Button,
   TextField,
   useTheme,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  SelectChangeEvent,
 } from '@mui/material'
 import { useState, useRef } from 'react'
-import { useCategories, useSubcategories } from '../../shared/api/queries'
+import { useSubcategories } from '../../shared/api/queries'
 import { SubcategoryService } from '../../shared/api/services/subcategories'
 import { TransactionSubcategoryPost } from '../../shared/types/transactionSubcategory'
+import CategorySelector from '../CategorySelector'
 
 interface SubcategoryFormProps {
   editMode?: boolean
@@ -29,15 +25,11 @@ const SubcategoryForm: React.FunctionComponent<SubcategoryFormProps> = ({
 }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>()
 
-  const categories = useCategories()
   const subcategories = useSubcategories(selectedCategoryId)
+
   const theme = useTheme()
 
   const nameInputRef = useRef<HTMLInputElement>()
-
-  const handleSelectCategory = (e: SelectChangeEvent) => {
-    setSelectedCategoryId(+e.target.value)
-  }
 
   const handleSubmit = () => {
     if (!selectedCategoryId || !nameInputRef.current) return
@@ -63,21 +55,7 @@ const SubcategoryForm: React.FunctionComponent<SubcategoryFormProps> = ({
           <Container>
             <Typography variant='h3'>{formTitle}</Typography>
             <Box marginBottom={2} marginTop={2}>
-              <FormControl fullWidth>
-                <InputLabel id='categoryId'>Category</InputLabel>
-                <Select
-                  label='Category'
-                  labelId='categoryId'
-                  sx={inputStyle}
-                  onChange={handleSelectCategory}
-                >
-                  {categories.data?.map((category) => (
-                    <MenuItem key={category.id} value={category.id}>
-                      {category.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <CategorySelector onCategorySelect={setSelectedCategoryId} />
               <TextField
                 type='text'
                 fullWidth
