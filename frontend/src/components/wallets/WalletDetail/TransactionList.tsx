@@ -13,7 +13,7 @@ const TransactionList: React.FunctionComponent<TransactionListProps> = ({
   if (transactions.length === 0) return <NoResults />
 
   return (
-    <List sx={{ maxHeight: '60vh', overflowY: 'scroll' }} dense>
+    <List sx={{ maxHeight: '60vh', overflowY: 'auto' }} dense>
       {transactions.map((transaction, index) => (
         <TransactionListItem transaction={transaction} index={index} />
       ))}
