@@ -1,14 +1,14 @@
-import { IconButton, styled, Toolbar } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
+import { IconButton, styled, Toolbar } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import Typography from '@mui/material/Typography'
 
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 
-import { DRAWER_WIDTH } from '../../../shared/settings/layout';
+import { DRAWER_WIDTH } from '../../../shared/settings/layout'
 
 interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-  onDrawerOpen?: () => void;
+  open?: boolean
+  onDrawerOpen?: () => void
 }
 
 const StyledAppBar = styled(MuiAppBar, {
@@ -27,7 +27,7 @@ const StyledAppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-}));
+}))
 
 const AppBar: React.FunctionComponent<AppBarProps> = ({
   open,
@@ -53,6 +53,6 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
       </Typography>
     </Toolbar>
   </StyledAppBar>
-);
+)
 
-export default AppBar;
+export default AppBar

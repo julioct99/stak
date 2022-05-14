@@ -23,6 +23,13 @@ services:
     volumes:
       - vol_db:/var/lib/postgresql/data
 
+  frontend:
+    build: frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app
+
 volumes:
   vol_db:
     driver: local
