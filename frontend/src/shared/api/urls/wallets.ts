@@ -10,12 +10,12 @@ export const getWalletDetailUrl = (walletId: number) => {
 
 export const getWalletTransactionListUrl = (walletId: number) => {
   const parentWalletUrl = getWalletDetailUrl(walletId)
-  return `${parentWalletUrl}/${BASE_NAMES.TRANSACTIONS}`
+  return `${parentWalletUrl}/${BASE_NAMES.TRANSACTIONS}/`
 }
 
 export const getWalletTransactionDetailUrl = (
   walletId: number,
   transactionId: number
 ) => {
-  return `${getWalletTransactionListUrl(walletId)}/${transactionId}`
+  return `${getWalletTransactionListUrl(walletId)}${transactionId}`
 }

@@ -14,8 +14,10 @@ export function useWallet(walletId: number) {
   )
 }
 
-export function useWalletTransactions(walletId: number) {
-  return useQuery<Transaction[], Error>([BASE_NAMES.TRANSACTIONS, walletId], () =>
-    fetchWalletTransactions(walletId)
+export function useWalletTransactions(walletId: number | undefined | null) {
+  return useQuery<Transaction[], Error>(
+    [BASE_NAMES.TRANSACTIONS, walletId],
+    () => fetchWalletTransactions(walletId || -1),
+    { enabled: !!walletId }
   )
 }

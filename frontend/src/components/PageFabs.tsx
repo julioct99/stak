@@ -20,7 +20,7 @@ const PageFabs: React.FunctionComponent<PageFabsProps> = ({
   return (
     <>
       <Modal open={transactionModalOpen} onClose={() => setTransactionModalOpen(false)}>
-        <TransactionForm onSubmit={() => console.log('SUBMIT')} />
+        <TransactionForm onSubmit={() => setTransactionModalOpen(false)} />
       </Modal>
       <Fab
         size='large'
